@@ -1,4 +1,4 @@
-name: Github Actions Deployment Leantime and Gatus app
+name: Deploy Leantime & Gatus
 
 env:
   AWS_REGION: us-east-1
@@ -48,21 +48,26 @@ jobs:
       - name: Inject token to config.yaml
         run: |
             sed -i "s/\${GITHUB_TOKEN}/${{ secrets.TOKEN }}/g" gatus/config/config.yaml
-            sed -i "s/\${ALB_ENDPOINT}/${{ secrets.ALB_ENDPOINT }}/g" gatus/config/config.yaml
+
+      # check 
+      - name: Check config.yaml
+        run: cat gatus/config/config.yaml
+      - name: Check Directory
+        run: ls gatus/config
 
       # Build Masukan Build command ECR
+      - name: Login to AWS ECR
+        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339712797974.dkr.ecr.us-east-1.amazonaws.com
       - name: Build Gatus Images
         run: docker build -t lks-gatus .
-      - name: Login to AWS ECR
-        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 891377054079.dkr.ecr.us-east-1.amazonaws.com
       - name: Tag Gatus Image
-        run: docker tag lks-gatus:latest 891377054079.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest
+        run: docker tag lks-gatus:latest 339712797974.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest
       - name: Push Gatus Image to ECR
-        run: docker push 891377054079.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest
+        run: docker push 339712797974.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest
       - name: Deploy Gatus Task Definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:
           task-definition: gatus/task-definition.json
           service: gatus-service
-          cluster: lks-oss-cluster
+          cluster: lks-oss-cluster-1
           wait-for-service-stability: true

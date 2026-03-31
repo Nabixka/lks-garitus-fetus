@@ -1,0 +1,71 @@
+{
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:339712797974:task-definition/lks-gatus-app:1",
+    "containerDefinitions": [
+        {
+            "name": "gatus-app",
+            "image": "339712797974.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest",
+            "cpu": 0,
+            "portMappings": [
+                {
+                    "name": "gatus-app-8080-tcp",
+                    "containerPort": 8080,
+                    "hostPort": 8080,
+                    "protocol": "tcp",
+                    "appProtocol": "http"
+                }
+            ],
+            "essential": true,
+            "environment": [],
+            "environmentFiles": [],
+            "mountPoints": [],
+            "volumesFrom": [],
+            "systemControls": []
+        }
+    ],
+    "family": "lks-gatus-app",
+    "taskRoleArn": "arn:aws:iam::339712797974:role/LabRole",
+    "executionRoleArn": "arn:aws:iam::339712797974:role/LabRole",
+    "networkMode": "awsvpc",
+    "revision": 1,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+        {
+            "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.task-iam-role"
+        },
+        {
+            "name": "ecs.capability.execution-role-ecr-pull"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+        },
+        {
+            "name": "GITHUB_TOKEN",
+            "valueFrom": "arn:aws:ssm:region:account:parameter/github_token"
+        },
+        {
+            "name": "ecs.capability.task-eni"
+        }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+        "EC2",
+        "FARGATE",
+        "MANAGED_INSTANCES"
+    ],
+    "requiresCompatibilities": [
+        "FARGATE"
+    ],
+    "cpu": "1024",
+    "memory": "3072",
+    "runtimePlatform": {
+        "cpuArchitecture": "X86_64",
+        "operatingSystemFamily": "LINUX"
+    },
+    "registeredAt": "2026-03-31T03:00:24.212Z",
+    "registeredBy": "arn:aws:sts::339712797974:assumed-role/voclabs/user4298198=13116_-_Muhammad_Fadhil_Abiprayana",
+    "tags": []
+}
