@@ -27,7 +27,7 @@ jobs:
         with:
           task-definition: leantime/task-definition.json
           service: leantime-service
-          cluster: lks-oss-cluster
+          cluster: lks-oss-cluster-1
           wait-for-service-stability: true
 
   Deploy-Gatus:
