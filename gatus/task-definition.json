@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "gatus-app",
-            "image": "twinproduction/gatus:latest",
+            "image": "339712797974.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest",
             "cpu": 0,
             "portMappings": [
                 {
