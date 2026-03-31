@@ -1,0 +1,38 @@
+endpoints:
+  - name: website
+    url: https://example.com
+    interval: 60s
+    conditions:
+      - "[STATUS] == 200"
+      - "[RESPONSE_TIME] < 1000"
+      
+  - name: api
+    group: backend
+    url: https://api.example.com/health
+    interval: 30s
+    conditions:
+      - "[STATUS] == 200"
+      - "[BODY].status == UP"
+    alerts:
+      - type: slack
+        
+  - name: database
+    group: backend
+    url: tcp://db.example.com:5432
+    interval: 30s
+    conditions:
+      - "[CONNECTED] == true"
+
+external-endpoints:
+  - name: batch-job
+    group: jobs
+    token: abcd1234
+    alerts:
+      - type: pagerduty
+        failure-threshold: 2
+
+alerting:
+  slack:
+    webhook-url: https://hooks.slack.com/services/...
+  pagerduty:
+    integration-key: your-integration-key
