@@ -47,6 +47,10 @@
             "valueFrom": "arn:aws:ssm:region:account:parameter/github_token"
         },
         {
+            "name": "GITHUB_REPO_URL",
+            "value": "https://github.com/Nabixka/lks-garitus-fetus"
+        },
+        {
             "name": "ecs.capability.task-eni"
         }
     ],

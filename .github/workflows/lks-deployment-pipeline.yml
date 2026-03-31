@@ -44,11 +44,6 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      # Inject Token
-      - name: Inject token to config.yaml
-        run: |
-            sed -i "s/\${GITHUB_TOKEN}/${{ secrets.TOKEN }}/g" gatus/config/config.yaml
-
       # check 
       - name: Check config.yaml
         run: cat gatus/config/config.yaml
