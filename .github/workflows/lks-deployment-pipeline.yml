@@ -50,15 +50,6 @@ jobs:
       - name: Check Directory
         run: ls gatus/config
 
-      # Build Masukan Build command ECR
-      - name: Login to AWS ECR
-        run: aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 339712797974.dkr.ecr.us-east-1.amazonaws.com
-      - name: Build Gatus Images
-        run: docker build -t lks-gatus .
-      - name: Tag Gatus Image
-        run: docker tag lks-gatus:latest 339712797974.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest
-      - name: Push Gatus Image to ECR
-        run: docker push 339712797974.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest
       - name: Deploy Gatus Task Definition
         uses: aws-actions/amazon-ecs-deploy-task-definition@v1
         with:

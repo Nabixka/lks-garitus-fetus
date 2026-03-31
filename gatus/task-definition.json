@@ -3,7 +3,7 @@
     "containerDefinitions": [
         {
             "name": "gatus-app",
-            "image": "339712797974.dkr.ecr.us-east-1.amazonaws.com/lks-gatus:latest",
+            "image": "twinproduction/gatus:latest",
             "cpu": 0,
             "portMappings": [
                 {
@@ -15,7 +15,26 @@
                 }
             ],
             "essential": true,
-            "environment": [],
+            "logConfiguration": {
+                "logDriver": "awslogs",
+                "options": {
+                    "awslogs-group": "/ecs/lks/gatus-app",
+                    "awslogs-region": "us-east-1",
+                    "awslogs-stream-prefix": "ecs"
+                }
+            },
+            "environment": [
+                {
+                    "name": "GITHUB_REPO_URL",
+                    "value": "https://github.com/Nabixka/lks-garitus-fetus"
+                }
+            ],
+            "secrets": [
+                {
+                    "name": "GITHUB_TOKEN",
+                    "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/github_token"
+                }
+            ],
             "environmentFiles": [],
             "mountPoints": [],
             "volumesFrom": [],
@@ -41,14 +60,6 @@
         },
         {
             "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
-        },
-        {
-            "name": "GITHUB_TOKEN",
-            "valueFrom": "arn:aws:ssm:region:account:parameter/github_token"
-        },
-        {
-            "name": "GITHUB_REPO_URL",
-            "value": "https://github.com/Nabixka/lks-garitus-fetus"
         },
         {
             "name": "ecs.capability.task-eni"
