@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:339712797974:task-definition/lks-leantime-app:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:339712797974:task-definition/lks-leantime-app:7",
     "containerDefinitions": [
         {
             "name": "wordpress",
@@ -29,7 +29,6 @@
                     "value": "8080"
                 }
             ],
-            "environmentFiles": [],
             "mountPoints": [
                 {
                     "sourceVolume": "public-files",
@@ -50,23 +49,22 @@
             "volumesFrom": [],
             "secrets": [
                 {
-                    "name": "LEAN_DB_HOST",
-                    "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/host"
+                    "name": "LEAN_DB_DATABASE",
+                    "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/name"
                 },
                 {
-                    "name": "LEAN_DB_USER",
-                    "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/username"
+                    "name": "LEAN_DB_HOST",
+                    "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/host"
                 },
                 {
                     "name": "LEAN_DB_PASSWORD",
                     "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/password"
                 },
                 {
-                    "name": "LEAN_DB_DATABASE",
-                    "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/name"
+                    "name": "LEAN_DB_USER",
+                    "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/username"
                 }
             ],
-            "ulimits": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
@@ -84,16 +82,16 @@
     "taskRoleArn": "arn:aws:iam::339712797974:role/LabRole",
     "executionRoleArn": "arn:aws:iam::339712797974:role/LabRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 7,
     "volumes": [
         {
             "name": "public-files",
             "efsVolumeConfiguration": {
-                "fileSystemId": "fs-0885b17039a0b034a",
+                "fileSystemId": "fs-0393574a90de69baf",
                 "rootDirectory": "/",
                 "transitEncryption": "ENABLED",
                 "authorizationConfig": {
-                    "accessPointId": "fsap-01fe682186724b4b8",
+                    "accessPointId": "fsap-099822c3441ab433f",
                     "iam": "ENABLED"
                 }
             }
@@ -101,11 +99,11 @@
         {
             "name": "userfiles",
             "efsVolumeConfiguration": {
-                "fileSystemId": "fs-0885b17039a0b034a",
+                "fileSystemId": "fs-0393574a90de69baf",
                 "rootDirectory": "/",
                 "transitEncryption": "ENABLED",
                 "authorizationConfig": {
-                    "accessPointId": "fsap-0eaa02a88104111e3",
+                    "accessPointId": "fsap-050c5275d656b90af",
                     "iam": "ENABLED"
                 }
             }
@@ -113,11 +111,11 @@
         {
             "name": "plugins",
             "efsVolumeConfiguration": {
-                "fileSystemId": "fs-0885b17039a0b034a",
+                "fileSystemId": "fs-0393574a90de69baf",
                 "rootDirectory": "/",
                 "transitEncryption": "ENABLED",
                 "authorizationConfig": {
-                    "accessPointId": "fsap-0d4e38ddfc04fec95",
+                    "accessPointId": "fsap-0cba4b514ced2d059",
                     "iam": "ENABLED"
                 }
             }
@@ -162,8 +160,8 @@
     "placementConstraints": [],
     "compatibilities": [
         "EC2",
-        "MANAGED_INSTANCES",
-        "FARGATE"
+        "FARGATE",
+        "MANAGED_INSTANCES"
     ],
     "requiresCompatibilities": [
         "FARGATE"
@@ -174,7 +172,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2026-03-31T05:09:39.967Z",
+    "registeredAt": "2026-04-01T14:46:45.643Z",
     "registeredBy": "arn:aws:sts::339712797974:assumed-role/voclabs/user4298198=13116_-_Muhammad_Fadhil_Abiprayana",
     "tags": []
 }

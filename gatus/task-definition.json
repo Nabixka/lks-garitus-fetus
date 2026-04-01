@@ -1,5 +1,5 @@
 {
-    "taskDefinitionArn": "arn:aws:ecs:us-east-1:339712797974:task-definition/lks-gatus-app:1",
+    "taskDefinitionArn": "arn:aws:ecs:us-east-1:339712797974:task-definition/lks-gatus-app:8",
     "containerDefinitions": [
         {
             "name": "gatus-app",
@@ -15,29 +15,18 @@
                 }
             ],
             "essential": true,
+            "environment": [],
+            "mountPoints": [],
+            "volumesFrom": [],
             "logConfiguration": {
                 "logDriver": "awslogs",
                 "options": {
                     "awslogs-group": "/ecs/lks/gatus-app",
                     "awslogs-region": "us-east-1",
                     "awslogs-stream-prefix": "ecs"
-                }
+                },
+                "secretOptions": []
             },
-            "environment": [
-                {
-                    "name": "GITHUB_REPO_URL",
-                    "value": "https://github.com/Nabixka/lks-garitus-fetus"
-                }
-            ],
-            "secrets": [
-                {
-                    "name": "GITHUB_TOKEN",
-                    "valueFrom": "arn:aws:ssm:us-east-1:339712797974:parameter/github_token"
-                }
-            ],
-            "environmentFiles": [],
-            "mountPoints": [],
-            "volumesFrom": [],
             "systemControls": []
         }
     ],
@@ -45,12 +34,21 @@
     "taskRoleArn": "arn:aws:iam::339712797974:role/LabRole",
     "executionRoleArn": "arn:aws:iam::339712797974:role/LabRole",
     "networkMode": "awsvpc",
-    "revision": 1,
+    "revision": 8,
     "volumes": [],
     "status": "ACTIVE",
     "requiresAttributes": [
         {
+            "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+        },
+        {
+            "name": "ecs.capability.execution-role-awslogs"
+        },
+        {
             "name": "com.amazonaws.ecs.capability.ecr-auth"
+        },
+        {
+            "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
         },
         {
             "name": "com.amazonaws.ecs.capability.task-iam-role"
@@ -80,7 +78,7 @@
         "cpuArchitecture": "X86_64",
         "operatingSystemFamily": "LINUX"
     },
-    "registeredAt": "2026-03-31T03:00:24.212Z",
+    "registeredAt": "2026-04-01T14:44:54.602Z",
     "registeredBy": "arn:aws:sts::339712797974:assumed-role/voclabs/user4298198=13116_-_Muhammad_Fadhil_Abiprayana",
     "tags": []
 }

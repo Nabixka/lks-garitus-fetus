@@ -5,7 +5,7 @@ alerting:
 
 endpoints:
   - name: leantime
-    url: http://lks-oss-lb-826177753.us-east-1.elb.amazonaws.com
+    url: http://lks-oss-lb-2032801103.us-east-1.elb.amazonaws.com
     interval: 30s
     conditions:
       - "[STATUS] == 200"
@@ -17,7 +17,7 @@ endpoints:
         send-on-resolved: true
 
   - name: gatus
-    url: http://lks-oss-lb-826177753.us-east-1.elb.amazonaws.com:8080
+    url: http://lks-oss-lb-2032801103.us-east-1.elb.amazonaws.com:8080
     interval: 60s
     conditions:
       - "[STATUS] == 200"
