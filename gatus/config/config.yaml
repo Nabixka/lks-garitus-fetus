@@ -1,11 +1,7 @@
 alerting:
   github:
     repository-url: ${GITHUB_REPO_URL}
-    token: ${GITHUB_TOKEN}
-    default-alert:
-      failure-threshold: 3
-      success-threshold: 5
-      send-on-resolved: true
+    token: ""
 
 endpoints:
   - name: leantime
@@ -14,6 +10,11 @@ endpoints:
     conditions:
       - "[STATUS] == 200"
       - "[RESPONSE_TIME] < 300"
+    alerts:
+      - type: github
+        failure-threshold: 3
+        success-threshold: 5
+        send-on-resolved: true
 
   - name: gatus
     url: http://lks-oss-lb-826177753.us-east-1.elb.amazonaws.com:8080

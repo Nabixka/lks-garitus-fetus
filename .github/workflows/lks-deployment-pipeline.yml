@@ -12,6 +12,8 @@ jobs:
   Deploy-Leantime:
     name: Deploy Leantime App
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -33,6 +35,8 @@ jobs:
   Deploy-Gatus:
     name: Deploy Gatus App
     runs-on: ubuntu-latest
+    permissions:
+      issues: write
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -47,7 +51,8 @@ jobs:
       # Inject Token
       - name: Inject token to config.yaml
         run: |
-            sed -i "s/\${GITHUB_TOKEN}/${{ secrets.TOKEN }}/g" gatus/config/config.yaml
+            sed -i "s/token: .*/token: ${{ secrets.TOKEN }}/" gatus/config/config.yaml
+            sed -i "s|repository-url: .*|repository-url: ${{ github.server_url }}/${{ github.repository }}|" gatus/config/config.yaml
 
       # check 
       - name: Check config.yaml
