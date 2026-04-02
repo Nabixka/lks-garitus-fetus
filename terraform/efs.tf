@@ -75,11 +75,11 @@ resource "aws_efs_access_point" "plugins" {
 resource "aws_efs_mount_target" "private_1a" {
   file_system_id = aws_efs_file_system.lks_project_management.id
   subnet_id      = aws_subnet.lks_pm_private_subnet_1a.id
-  security_groups = [aws_security_group.lks_sg_database]
+  security_groups = [aws_security_group.lks_sg_database.id]
 }
 
 resource "aws_efs_mount_target" "private_1b" {
   file_system_id = aws_efs_file_system.lks_project_management.id
   subnet_id      = aws_subnet.lks_pm_private_subnet_1b.id
-  security_groups = [aws_security_group.lks_sg_database]
+  security_groups = [aws_security_group.lks_sg_database.id]
 }

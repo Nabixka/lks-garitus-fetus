@@ -1,29 +1,34 @@
-data "aws_ssm_parameters_by_path" "password" {
-  path = "/lks/db/password"
-  types = SecureString
-  values = ""
+resource "aws_ssm_parameter" "host" {
+  name  = "/lks/db/host"
+  type  = "String"
+  description = "Database host/endpoint"
+  value = aws_db_instance.lks_project_management_cluster.endpoint
 }
 
-data "aws_ssm_parameters_by_path" "name" {
-  path = "/lks/db/name"
-  types = String
-  values = ""
+resource "aws_ssm_parameter" "port" {
+  name  = "/lks/db/port"
+  type  = "String"
+  description = "Database port"
+  value = tostring(aws_db_instance.lks_project_management_cluster.port)
 }
 
-data "aws_ssm_parameters_by_path" "host" {
-  path = "/lks/db/host"
-  types = String
-  values = ""
+resource "aws_ssm_parameter" "name" {
+  name  = "/lks/db/name"
+  type  = "String"
+  description = "Initial/default database name"
+  value = aws_db_instance.lks_project_management_cluster.db_name
 }
 
-data "aws_ssm_parameters_by_path" "port" {
-  path = "/lks/db/port"
-  types = String
-  values = ""
+resource "aws_ssm_parameter" "username" {
+  name  = "/lks/db/username"
+  type  = "SecureString"
+  description = "Database username"
+  value = aws_db_instance.lks_project_management_cluster.username
 }
 
-data "aws_ssm_parameters_by_path" "username" {
-  path = "/lks/db/username"
-  types = SecureString
-  values = ""
+resource "aws_ssm_parameter" "password" {
+  name  = "/lks/db/password"
+  type  = "SecureString"
+  description = "Database password"
+  value = aws_db_instance.lks_project_management_cluster.password
 }
